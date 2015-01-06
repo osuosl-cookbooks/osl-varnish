@@ -31,3 +31,5 @@ service 'varnishncsa' do
   action node['osl-varnish']['ncsa_daemon'] ? %w(enable start) : \
     %w(disable stop)
 end
+
+include_recipe 'firewall::varnishadm'
