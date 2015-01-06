@@ -24,6 +24,7 @@ node.default['varnish']['log_daemon'] = false
 
 # Enable varnishncsa instead.
 service 'varnishncsa' do
-  supports :status => true, :restart => true
-  action node['osl-varnish']['ncsa_daemon'] ? %w(enable start) : %w(disable stop)
+  supports status: true, restart: true
+  action node['osl-varnish']['ncsa_daemon'] ? %w(enable start) : \
+    %w(disable stop)
 end
