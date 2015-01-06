@@ -17,10 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe 'varnish'
+# Default to 3
+node.default['varnish']['version'] = 3.0
 
 # Disable varnishlog daemon to conserve disk space.
 node.default['varnish']['log_daemon'] = false
+
+include_recipe 'varnish'
 
 # Enable varnishncsa instead.
 service 'varnishncsa' do
