@@ -25,6 +25,12 @@ node.default['varnish']['log_daemon'] = false
 
 include_recipe 'varnish'
 
+# Manage varnishncsa sysconfig
+template '/etc/sysconfig/varnishncsa' do
+  source 'varnishncsa.erb'
+  variables(directives: node['osl-varnish']['ncsa_directives'])
+end
+
 # Enable varnishncsa instead.
 service 'varnishncsa' do
   supports status: true, restart: true
