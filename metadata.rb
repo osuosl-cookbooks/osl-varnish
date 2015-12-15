@@ -8,3 +8,5 @@ version          '1.0.0'
 
 depends          'varnish'
 depends          'firewall'
+
+supports         'centos', '~> 6'
