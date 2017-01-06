@@ -34,8 +34,7 @@ end
 # Enable varnishncsa instead.
 service 'varnishncsa' do
   supports status: true, restart: true
-  action node['osl-varnish']['ncsa_daemon'] ? %w(enable start) : \
-    %w(disable stop)
+  action node['osl-varnish']['ncsa_daemon'] ? %w(enable start) : %w(disable stop)
 end
 
 include_recipe 'firewall::varnishadm'
