@@ -3,3 +3,5 @@ suites:
   - name: default
     run_list:
       - recipe[osl-varnish::default]
+verifier:
+  name: inspec
