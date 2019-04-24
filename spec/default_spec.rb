@@ -8,7 +8,7 @@ describe 'osl-varnish::default' do
           node.automatic['fqdn'] = 'test.osuosl.org'
           node.set['osl-varnish']['ncsa_directives'] = {
             directive1: 'value1',
-            directive2: 'value2'
+            directive2: 'value2',
           }
         end.converge(described_recipe)
       end
@@ -44,7 +44,7 @@ directive2="value2"'
         expect(chef_run).to start_service('varnishncsa').with(
           supports: {
             status: true,
-            restart: true
+            restart: true,
           }
         )
         expect(chef_run).to enable_service('varnishncsa')
