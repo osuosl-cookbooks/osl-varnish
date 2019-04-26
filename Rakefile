@@ -26,10 +26,10 @@ end
 #
 def gen_ssl_cert
   name = OpenSSL::X509::Name.new [
-    ['C', 'US'],
-    ['ST', 'Oregon'],
-    ['CN', 'OSU Open Source Lab'],
-    ['DC', 'example']
+    %w(C US),
+    %w(ST Oregon),
+    %w(CN OSU Open Source Lab),
+    %w(DC example),
   ]
   key = OpenSSL::PKey::RSA.new 2048
 
@@ -45,7 +45,7 @@ def gen_ssl_cert
   cert.issuer = name
   cert.sign(key, OpenSSL::Digest::SHA1.new)
 
-  return cert, key
+  # return cert, key
 end
 
 ##
@@ -88,7 +88,7 @@ directory 'test/integration/data_bags/certificates' => 'test/integration'
 #
 file snakeoil_file_path => [
   'test/integration/data_bags/certificates',
-  'test/integration/encrypted_data_bag_secret'
+  'test/integration/encrypted_data_bag_secret',
 ] do
 
   encrypted_data_bag_secret = Chef::EncryptedDataBagItem.load_secret(
@@ -116,12 +116,12 @@ RuboCop::RakeTask.new(:style)
 
 desc 'Run FoodCritic (lint) tests'
 task :lint do
-    run_command('foodcritic --epic-fail any .')
+  run_command('foodcritic --epic-fail any .')
 end
 
 desc 'Run RSpec (unit) tests'
 task :unit do
-    run_command('rspec')
+  run_command('rspec')
 end
 
 desc 'Run all tests'
