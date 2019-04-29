@@ -44,7 +44,6 @@ def gen_ssl_cert
   # Self-sign the Certificate
   cert.issuer = name
   cert.sign(key, OpenSSL::Digest::SHA1.new)
-
 end
 
 ##
@@ -109,9 +108,10 @@ task snakeoil: snakeoil_file_path
 desc 'Create an Encrypted Databag Secret'
 task secret_file: encrypted_data_bag_secret_path
 
-require 'rubocop/rake_task'
-desc 'Run RuboCop (style) tests'
-RuboCop::RakeTask.new(:style)
+desc 'Run RuboCop (cookstyle) tests'
+task :style do
+  run_command('cookstyle')
+end
 
 desc 'Run FoodCritic (lint) tests'
 task :lint do
