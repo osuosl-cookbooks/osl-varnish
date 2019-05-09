@@ -44,6 +44,8 @@ def gen_ssl_cert
   # Self-sign the Certificate
   cert.issuer = name
   cert.sign(key, OpenSSL::Digest::SHA1.new)
+
+  cert key
 end
 
 ##
